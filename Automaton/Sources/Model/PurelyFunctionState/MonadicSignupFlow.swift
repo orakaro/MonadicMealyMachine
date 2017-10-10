@@ -17,8 +17,8 @@ enum REvent {
 }
 
 struct TransitionFunc {
-    static let registerRootTransition: (Void) -> State<RState, UIViewController> = { v in
-        let vc = RegisterRootViewController.make(withDependency: v)
+    static let registerRootTransition: () -> State<RState, UIViewController> = {
+        let vc = RegisterRootViewController.make(withDependency: ())
         return State<RState, UIViewController> { s in
             let s1: RState = s == .root ? .registerRoot: .any
             return (s1, vc)
@@ -41,8 +41,8 @@ struct TransitionFunc {
         }
     }
 
-    static let emailLoginTransition: (Void) -> State<RState, UIViewController> = { v in
-        let vc = EmailLoginViewController.make(withDependency: v)
+    static let emailLoginTransition: () -> State<RState, UIViewController> = {
+        let vc = EmailLoginViewController.make(withDependency: ())
         return State<RState, UIViewController> { s in
             let s1: RState = s == .registerRoot ? .emailLogin : .any
             return (s1, vc)
